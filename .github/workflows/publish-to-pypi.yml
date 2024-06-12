@@ -27,6 +27,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
 
+      - name: Add execute permissions to script
+        run: chmod +x scripts/publish.sh
+
       - name: Run publish script
         run: scripts/publish.sh
         env:
