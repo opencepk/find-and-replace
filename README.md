@@ -48,7 +48,7 @@ In this configuration, the find-and-replace hook is set to read search and repla
 ## Run tests
 
 ```
-python3 -m unittest tests/test_main.py
+python -m unittest tests.test_main
 
 ```
 
