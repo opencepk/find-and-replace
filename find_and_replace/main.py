@@ -1,48 +1,41 @@
-import unittest
-import tempfile
+# -*- coding: utf-8 -*-
 import os
-from unittest.mock import patch, mock_open
+import argparse
+import fileinput
 import json
-from main import replace_in_file, main
+import sys
 
-class TestReplaceInFile(unittest.TestCase):
-    def setUp(self):
-        self.temp_file = tempfile.NamedTemporaryFile(delete=False)
-        self.temp_file.write(b'Test line 1\nTest line 2\nTest line 3\n')
-        self.temp_file.close()
+def replace_in_file(filename, search, replacement):
+    with fileinput.FileInput(filename, inplace=True) as file:
+        for line in file:
+            print(line.replace(rf"{search}", rf"{replacement}"), end='')
 
-    def tearDown(self):
-        os.unlink(self.temp_file.name)
+def main():
+    parser = argparse.ArgumentParser(description="This script performs search and replace operations on one or more files. It supports two modes of operation: Direct Mode and File Mode. In Direct Mode, you specify the search and replacement strings directly on the command line. In File Mode, the script reads the search and replacement strings from a JSON file.")
+    parser.add_argument('files', nargs='*', help='Files to perform search and replace')
+    parser.add_argument('--find', help='Text to find in files')
+    parser.add_argument('--replacement', help='Text to replace with in files')
+    parser.add_argument('--read-from-file', type=bool, default=True, help='Read search and replacement strings from file')
+    parser.add_argument('--config', default='.find-and-replace.json', help='Path to the config file')
+    args = parser.parse_args()
 
-    def test_replace_in_file(self):
-        replace_in_file(self.temp_file.name, 'Test', 'Replaced')
-        with open(self.temp_file.name, 'r') as f:
-            lines = f.readlines()
-        self.assertEqual(lines, ['Replaced line 1\n', 'Replaced line 2\n', 'Replaced line 3\n'])
+    if args.read_from_file:
+        try:
+            with open(os.path.join(os.getcwd(), args.config), 'r') as f:
+                replacements = json.load(f)
+        except FileNotFoundError:
+            print(f"Error: {args.config} file not found.")
+            sys.exit(1)
+        except json.JSONDecodeError:
+            print(f"Error: {args.config} is not a valid JSON file.")
+            sys.exit(1)
 
-class TestMain(unittest.TestCase):
-    @patch('argparse.ArgumentParser.parse_args')
-    @patch('builtins.open', new_callable=mock_open, read_data='[{"search": "Test", "replacement": "Replaced"}]')
-    def test_main_with_file_mode(self, mock_file, mock_args):
-        mock_args.return_value = argparse.Namespace(files=[os.path.join(os.getcwd(), 'test.txt')], find=None, replacement=None, read_from_file=True, config='config.json')
-        with open('test.txt', 'w') as f:
-            f.write('Test line 1\nTest line 2\nTest line 3\n')
-        main()
-        with open('test.txt', 'r') as f:
-            lines = f.readlines()
-        self.assertEqual(lines, ['Replaced line 1\n', 'Replaced line 2\n', 'Replaced line 3\n'])
-        os.remove('test.txt')
+        for filename in args.files:
+            for replacement in replacements:
+                replace_in_file(filename, replacement['search'], replacement['replacement'])
+    else:
+        for filename in args.files:
+            replace_in_file(filename, args.find, args.replacement)
 
-    @patch('argparse.ArgumentParser.parse_args')
-    def test_main_with_direct_mode(self, mock_args):
-        mock_args.return_value = argparse.Namespace(files=[os.path.join(os.getcwd(), 'test.txt')], find='Test', replacement='Replaced', read_from_file=False, config=None)
-        with open('test.txt', 'w') as f:
-            f.write('Test line 1\nTest line 2\nTest line 3\n')
-        main()
-        with open('test.txt', 'r') as f:
-            lines = f.readlines()
-        self.assertEqual(lines, ['Replaced line 1\n', 'Replaced line 2\n', 'Replaced line 3\n'])
-        os.remove('test.txt')
-
-if __name__ == '__main__':
-    unittest.main()
+if __name__ == "__main__":
+    main()
