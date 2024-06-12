@@ -41,5 +41,8 @@ jobs:
       - name: List contents of dist directory
         run: ls dist
 
+      - name: List contents of dist directory
+        run: pwd
+
       - name: Publish the package
-        run: twine upload --repository-url https://upload.pypi.org/legacy/ -u __token__ -p ${{ secrets.PYPI_API_TOKEN }} dist/*
+        run: twine upload --repository-url https://upload.pypi.org/legacy/ -u __token__ -p ${{ secrets.PYPI_API_TOKEN }} ${{ github.workspace }}/dist/*
