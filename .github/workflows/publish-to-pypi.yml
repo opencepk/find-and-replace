@@ -38,7 +38,7 @@ jobs:
         run: pip install bump2version
   
       - name: Bump version
-        run: bump2version patch  # or minor or major, depending on your needs
+        run: bump2version minor --verbose  # or minor or major, depending on your needs
 
       - name: Commit files
         run: |
