@@ -28,22 +28,22 @@ class TestMainFunctions(unittest.TestCase):
         # Assert that the file was opened correctly
         mock_fileinput.assert_called_once_with('dummy.txt', inplace=True)
 
-    @patch('argparse.ArgumentParser.parse_args')
-    @patch('find_and_replace.main.replace_in_file')
-    @patch('os.getcwd', return_value='/dummy/path')
-    @patch('builtins.open', new_callable=mock_open, read_data='{"search": "hello", "replacement": "hi"}')
-    @patch('json.load', return_value=[{"search": "hello", "replacement": "hi"}])
-    def test_main(self, mock_json_load, mock_open, mock_getcwd, mock_replace_in_file, mock_parse_args):
-        """
-        This test checks if the main function correctly reads the configuration file and calls the replace_in_file function with the correct arguments.
-        """
-        # Mock the command line arguments
-        mock_parse_args.return_value = argparse.Namespace(files=['dummy.txt'], find=None, replacement=None, read_from_file=True, config='.find-and-replace.json')
-        # Call the main function
-        main()
-        # Assert that the config file was opened correctly and the replace_in_file function was called with the correct arguments
-        mock_open.assert_called_once_with('/dummy/path/.find-and-replace.json', 'r')
-        mock_replace_in_file.assert_called_once_with('dummy.txt', 'hello', 'hi')
+@patch('argparse.ArgumentParser.parse_args')
+@patch('find_and_replace.main.replace_in_file')
+@patch('os.getcwd', return_value='/dummy/path')
+@patch('builtins.open', new_callable=mock_open, read_data='{"search": "hello", "replacement": "hi"}')
+@patch('json.load', return_value=[{"search": "hello", "replacement": "hi"}])
+def test_main(self, mock_json_load, mock_open, mock_getcwd, mock_replace_in_file, mock_parse_args):
+    """
+    This test checks if the main function correctly reads the configuration file and calls the replace_in_file function with the correct arguments.
+    """
+    # Mock the command line arguments
+    mock_parse_args.return_value = argparse.Namespace(files=['dummy.txt'], find=None, replacement=None, direct_mode=False, config='.find-and-replace.json')
+    # Call the main function
+    main()
+    # Assert that the config file was opened correctly and the replace_in_file function was called with the correct arguments
+    mock_open.assert_called_once_with('/dummy/path/.find-and-replace.json', 'r')
+    mock_replace_in_file.assert_called_once_with('dummy.txt', 'hello', 'hi')
 
 if __name__ == '__main__':
     unittest.main()
