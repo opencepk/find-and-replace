@@ -23,6 +23,12 @@ jobs:
         with:
           python-version: 3.11
 
+      - name: Install bump2version
+        run: pip install bump2version
+  
+      - name: Bump version
+        run: bump2version patch  # or minor or major, depending on your needs
+
       - name: Install twine
         run: pip install twine
 
