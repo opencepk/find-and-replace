@@ -15,4 +15,4 @@ fi
 python3 setup.py sdist
 
 # Upload the package to PyPI
-twine upload --repository-url https://upload.pypi.org/legacy/ -u __token__ -p $PYPI_API_TOKEN dist/*
+twine upload --repository-url https://upload.pypi.org/legacy/ -u __token__ -p $PYPI_TOKEN dist/*
