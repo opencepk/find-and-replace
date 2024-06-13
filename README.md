@@ -18,10 +18,12 @@ pip install find-and-replace-template-commit-check
 
 To use this package, you need to add it to your pre-commit configuration file (.pre-commit-config.yaml). Here's an example:
 
+For config mod
+
 ```
 repos:
-  - repo: https://github.com/andreouellet/pre-commit-find-and-replace-test (To be changed when repo is ready)
-    rev: test3
+  - repo: https://github.com/opencepk/find-and-replace
+    rev: v0.0.1
     hooks:
     - id: find-and-replace
       name: find-and-replace
@@ -31,19 +33,37 @@ repos:
       pass_filenames: true
       exclude_types:
         - binary
-      args: ["--read-from-file", "true"]
       files: README.md
       verbose: true
 
 ```
 
+and for direct mode
+
+```
+repos:
+  - repo: https://github.com/opencepk/find-and-replace
+    rev: v0.0.1
+    hooks:
+    - id: find-and-replace
+      name: find-and-replace
+      description: Find and replace strings
+      entry: find-and-replace
+      language: python
+      pass_filenames: true
+      exclude_types:
+        - binary
+      args: ["--find", "search_string", "--replacement", "replacement_string"]
+      files: README.md
+      verbose: true
+```
+
 Please note you also have a choice of
-      files: '.*\.md$'
+files: '.\*\.md$'
 or
-      files: .
+files: .
 
 In this configuration, the find-and-replace hook is set to read search and replacement strings from a file (.project-properties.json by default which should be defined in the root of the project you want to use this package). You can also specify the search and replacement strings directly in the args field (which is not a suggested way).
-
 
 ## Run tests
 
@@ -59,6 +79,11 @@ python -m unittest tests.test_main
    find-and-replace --config .find-and-replace.json README1.md README2.md
 ```
 
+also if you prefer to use a direct mod
+
+```
+find-and-replace-check --find "old_string" --replacement "new_string"  README1.md README2.md
+```
 
 ## If you need more help with the flags and usage of them
 
@@ -87,7 +112,6 @@ options:
 
 ```
 
-
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
@@ -106,8 +130,8 @@ bash scripts/publish.sh
 
 ## Reference Info
 
-* https://www.gnu.org/prep/standards/html_node/Option-Table.html#Option-Table
-* https://setuptools.pypa.io/en/latest/userguide/declarative_config.html
-* https://packaging.python.org/guides/distributing-packages-using-setuptools/
-* https://autopilot-docs.readthedocs.io/en/latest/license_list.html
-* https://pypi.org/classifiers/
+- https://www.gnu.org/prep/standards/html_node/Option-Table.html#Option-Table
+- https://setuptools.pypa.io/en/latest/userguide/declarative_config.html
+- https://packaging.python.org/guides/distributing-packages-using-setuptools/
+- https://autopilot-docs.readthedocs.io/en/latest/license_list.html
+- https://pypi.org/classifiers/
