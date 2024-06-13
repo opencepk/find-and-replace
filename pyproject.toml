@@ -6,7 +6,7 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["find_and_replace"]
+packages = ["find_and_replace_strings"]
 
 [project]
 name = "find-and-replace-strings"
@@ -48,10 +48,6 @@ keywords = ["find", "replace", "string", "file", "pre-commit", "hook", "git", "t
 
 
 [project.scripts]
-<<<<<<< HEAD
-find-and-replace-strings = "find_and_replace.main:main"
-=======
-find-and-replace-strings = "find_and_replace.__main__:main"
+find-and-replace-strings = "find_and_replace_strings.__main__:main"
 
->>>>>>> test
 
