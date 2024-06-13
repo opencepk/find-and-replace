@@ -13,7 +13,7 @@
 import unittest
 import argparse
 from unittest.mock import patch, mock_open
-from find_and_replace.main import replace_in_file, main
+from find_and_replace_strings.main import replace_in_file, main
 
 class TestMainFunctions(unittest.TestCase):
     @patch('fileinput.FileInput')
