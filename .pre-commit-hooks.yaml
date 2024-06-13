@@ -1,0 +1,5 @@
+- id: find-and-replace
+  name: find-and-replace
+  description: Finds strings in files and replaces them with other strings.
+  entry: find-and-replace
+  language: python
