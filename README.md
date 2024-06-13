@@ -11,7 +11,7 @@ This is an easy to use package which is already available here https://pypi.org/
 You can install the package via pip:
 
 ```bash
-pip install find-and-replace-template-commit-check
+pip install find-and-replace-strings
 ```
 
 ## Usage
@@ -25,10 +25,10 @@ repos:
   - repo: https://github.com/opencepk/find-and-replace
     rev: v0.0.1
     hooks:
-    - id: find-and-replace
-      name: find-and-replace
+    - id: find-and-replace-strings
+      name: find-and-replace-strings
       description: Find and replace strings
-      entry: find-and-replace
+      entry: find-and-replace-strings
       language: python
       pass_filenames: true
       exclude_types:
@@ -45,10 +45,10 @@ repos:
   - repo: https://github.com/opencepk/find-and-replace
     rev: v0.0.1
     hooks:
-    - id: find-and-replace
-      name: find-and-replace
+    - id: find-and-replace-strings
+      name: find-and-replace-strings
       description: Find and replace strings
-      entry: find-and-replace
+      entry: find-and-replace-strings
       language: python
       pass_filenames: true
       exclude_types:
@@ -75,21 +75,21 @@ python -m unittest tests.test_main
 ## How to run it using installed python package
 
 ```
-  pip install find-and-replace-template-commit-check
+  pip install find-and-replace-strings
    find-and-replace --config .find-and-replace.json README1.md README2.md
 ```
 
 also if you prefer to use a direct mod
 
 ```
-find-and-replace-check --find "old_string" --replacement "new_string"  README1.md README2.md
+find-and-replace-strings --find "old_string" --replacement "new_string"  README1.md README2.md
 ```
 
 ## If you need more help with the flags and usage of them
 
 ```
-find-and-replace -h
-usage: find-and-replace [-h] [--search SEARCH] [--replacement REPLACEMENT] [--read-from-file READ_FROM_FILE]
+find-and-replace-strings -h
+usage: find-and-replace-strings [-h] [--search SEARCH] [--replacement REPLACEMENT] [--read-from-file READ_FROM_FILE]
                         [--config REPLACEMENTS_FILE]
                         [files ...]
 
