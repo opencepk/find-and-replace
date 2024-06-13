@@ -125,7 +125,7 @@ This project is licensed under the terms of the MIT license.
 To build and publish it to pypi run
 
 ```
-bash scripts/publish.sh
+bash assets/publish.sh
 ```
 
 ## Reference Info
