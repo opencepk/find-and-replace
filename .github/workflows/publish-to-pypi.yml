@@ -40,9 +40,15 @@ jobs:
       - name: Bump version
         run: bump2version patch  # or minor or major, depending on your needs
 
-      # - name: Commit files
-      #   run: |
-      #     git commit -m "Bump version" -a
+      - name: Commit files
+        run: |
+          git commit -m "Bump version" -a
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
 
       - name: Install twine
         run: pip install twine
