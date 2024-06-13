@@ -1,12 +1,12 @@
-# Find and Replace Template Commit Check
+# find-and-replace
 
-This Python package provides a pre-commit hook that finds strings in files and replaces them with other strings.
+Python package and pre-commit-hook for finding and replacing string(s) in file(s).
 
 ## Installation
 
 This is an easy to use package which is already available here https://pypi.org/project/find-and-replace-template-commit-check/:
 
-![package to use](./images/pypi-package.png "Title")
+![package to use](./assets/pypi-package.png "Title")
 
 You can install the package via pip:
 
@@ -103,3 +103,11 @@ To build and publish it to pypi run
 ```
 bash scripts/publish.sh
 ```
+
+## Reference Info
+
+* https://www.gnu.org/prep/standards/html_node/Option-Table.html#Option-Table
+* https://setuptools.pypa.io/en/latest/userguide/declarative_config.html
+* https://packaging.python.org/guides/distributing-packages-using-setuptools/
+* https://autopilot-docs.readthedocs.io/en/latest/license_list.html
+* https://pypi.org/classifiers/

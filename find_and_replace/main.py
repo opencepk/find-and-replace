@@ -5,21 +5,41 @@ import fileinput
 import json
 import sys
 
+
 def replace_in_file(filename, search, replacement):
     with fileinput.FileInput(filename, inplace=True) as file:
         for line in file:
             print(line.replace(rf"{search}", rf"{replacement}"), end='')
 
+
 def main():
-    parser = argparse.ArgumentParser(description="This script performs search and replace operations on one or more files. It supports two modes of operation: Direct Mode and File Mode. In Direct Mode, you specify the search and replacement strings directly on the command line. In File Mode, the script reads the search and replacement strings from a JSON file.")
-    parser.add_argument('files', nargs='*', help='Files to perform search and replace')
-    parser.add_argument('--find', help='Text to find in files')
-    parser.add_argument('--replacement', help='Text to replace with in files')
-    parser.add_argument('--read-from-file', type=bool, default=True, help='Read search and replacement strings from file')
-    parser.add_argument('--config', default='.find-and-replace.json', help='Path to the config file')
+    parser = argparse.ArgumentParser(
+        description="""Perform find and replace operations on one or more target files. 
+                    By default, the script reads the search and replacement entries (strings) from a JSON file.
+                    You can also specify the search and replacement strings directly as command line args by setting the
+                    --find "search_string" and --replacement "replacement_string" argument options."""
+    )
+    parser.add_argument(
+        '--config', default='.find-and-replace.json',
+        help='PATH to JSON config file containing find and replacement entries'
+    )
+    parser.add_argument(
+        '--find', dest='direct_mode', action='store_true', help='String to find in files'
+    )
+    parser.add_argument(
+        '--replacement', dest='direct_mode', action='store_true', help='String to replace with in files'
+    )
+    parser.add_argument(
+        'files', nargs='*', help='File(s) on which to perform search and replace'
+    )
     args = parser.parse_args()
 
-    if args.read_from_file:
+    if args.direct_mode:
+        # Arguments --find and --replacement have been specified - running in direct mode
+        for filename in args.files:
+            replace_in_file(filename, args.find, args.replacement)
+    else:
+        # Arguments --find and --replacement have not been specified - running in default config file mode
         try:
             with open(os.path.join(os.getcwd(), args.config), 'r') as f:
                 replacements = json.load(f)
@@ -33,9 +53,7 @@ def main():
         for filename in args.files:
             for replacement in replacements:
                 replace_in_file(filename, replacement['search'], replacement['replacement'])
-    else:
-        for filename in args.files:
-            replace_in_file(filename, args.find, args.replacement)
+
 
 if __name__ == "__main__":
     main()
