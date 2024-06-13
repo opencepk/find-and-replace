@@ -23,6 +23,11 @@ jobs:
         with:
           python-version: 3.11
 
+      - name: Set up Git user
+        run: |
+          git config --global user.email "hminaee-tc"
+          git config --global user.name "hminaee@tucows.com"
+
       - name: Install bump2version
         run: pip install bump2version
   
