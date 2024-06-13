@@ -1,15 +1,14 @@
 name: Publish Python 🐍 distributions 📦 to PyPI
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    pull_request:
+        branches:
+            - main
+        types: [closed]
 
 jobs:
   build-n-publish:
+    if: ${{ github.event.pull_request.merged }}
     name: Build and publish Python 🐍 distributions 📦 to PyPI
     runs-on: ubuntu-latest
     permissions:
@@ -23,16 +22,11 @@ jobs:
         with:
           python-version: 3.11
 
-      - name: Install twine
-        run: pip install twine bui
-
-      - name: install setuptools
-        run: pip install setuptools
+      - name: Install pip packages
+        run: pip install twine build setuptools
 
       - name: Build the package
         run: python -m build
 
       - name: Publish the package
-        run: twine upload --skip-existing --repository-url https://upload.pypi.org/legacy/ -u __token__ -p ${{ secrets.PYPI_TOKEN }} ${{ github.workspace }}/dist/*
-
-
+        run: twine upload --repository-url https://upload.pypi.org/legacy/ -u __token__ -p ${{ secrets.PYPI_TOKEN }} ${{ github.workspace }}/dist/*
