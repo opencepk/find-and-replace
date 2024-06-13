@@ -32,5 +32,12 @@ jobs:
       - name: Build the package
         run: python setup.py sdist
 
-      - name: Publish the package
-        run: twine upload --skip-existing --repository-url https://upload.pypi.org/legacy/ -u __token__ -p ${{ secrets.PYPI_TOKEN }} ${{ github.workspace }}/dist/*
+      # - name: Publish the package
+      #   run: twine upload --skip-existing --repository-url https://upload.pypi.org/legacy/ -u __token__ -p ${{ secrets.PYPI_TOKEN }} ${{ github.workspace }}/dist/*
+      # - name: Retrieve release distributions
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: release-dists
+      #     path: dist/
+      - name: Publish release distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
