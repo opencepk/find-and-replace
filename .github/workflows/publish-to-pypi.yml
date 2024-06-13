@@ -25,8 +25,14 @@ jobs:
 
       - name: Set up Git user
         run: |
-          git config --global user.email "${{ secrets.GIT_USER_EMAIL }}"
-          git config --global user.name "${{ secrets.GIT_USER_NAME }}"
+          git config --global user.email "hminaee-tc"
+          git config --global user.name "hminaee@tucows.com"
+
+
+      # - name: Set up Git user
+      # run: |
+      #   git config --global user.email "${{ secrets.GIT_USER_EMAIL }}"
+      #   git config --global user.name "${{ secrets.GIT_USER_NAME }}"
 
       - name: Install bump2version
         run: pip install bump2version
