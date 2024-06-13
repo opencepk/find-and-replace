@@ -33,4 +33,4 @@ jobs:
         run: python setup.py sdist
 
       - name: Publish the package
-        run: twine upload --repository-url https://upload.pypi.org/legacy/ -u __token__ -p ${{ secrets.PYPI_TOKEN }} ${{ github.workspace }}/dist/*
+        run: twine upload --skip-existing --repository-url https://upload.pypi.org/legacy/ -u __token__ -p ${{ secrets.PYPI_TOKEN }} ${{ github.workspace }}/dist/*
