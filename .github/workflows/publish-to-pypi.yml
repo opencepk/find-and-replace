@@ -40,10 +40,6 @@ jobs:
       - name: Bump version
         run: bump2version minor --verbose  # or minor or major, depending on your needs
 
-      - name: Commit files
-        run: |
-          git commit -m "Bump version" -a
-
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
