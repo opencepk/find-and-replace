@@ -1,4 +1,4 @@
-name: Run check-commit-hook
+name: E2E
 
 on:
   push:
