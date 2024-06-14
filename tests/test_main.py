@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import unittest
 import argparse
 from unittest.mock import patch, mock_open
