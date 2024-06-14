@@ -29,3 +29,12 @@ repos:
         entry: python assets/check_version.py
         language: system
         files: pyproject.toml
+
+  - repo: local
+    hooks:
+      - id: find-and-replace-strings
+        name: Find and replace strings
+        entry: e2e/check-commit-hook.sh
+        language: system
+        files: 'e2e/.*\.test$'
+        verbose: true

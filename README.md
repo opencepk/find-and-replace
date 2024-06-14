@@ -2,6 +2,15 @@
 
 Python package and pre-commit-hook for finding and replacing string(s) in file(s).
 
+## Prerequisite
+
+pre-commit install
+pre-commit install -t pre-push
+
+The above will make sure precommit will be run automatically on push
+
+
+
 ## Installation
 
 This is an easy to use package which is already available here https://pypi.org/project/find-and-replace-template-commit-check/:

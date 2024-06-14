@@ -7,7 +7,7 @@ __pycache__/
 .DS_Store
 **/.DS_Store
 
-
+**/precommit-e2e.test
 
 # C extensions
 *.so
