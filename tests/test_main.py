@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # import unittest
 # from find_and_replace.main import replace_in_file, main
 # class TestMainFunctions(unittest.TestCase):
@@ -47,5 +48,3 @@ def test_main(self, mock_json_load, mock_open, mock_getcwd, mock_replace_in_file
 
 if __name__ == '__main__':
     unittest.main()
-
-

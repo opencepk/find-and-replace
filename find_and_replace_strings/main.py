@@ -14,7 +14,7 @@ def replace_in_file(filename, search, replacement):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="""Perform find and replace operations on one or more target files. 
+        description="""Perform find and replace operations on one or more target files.
                     By default, the script reads the search and replacement entries (strings) from a JSON file.
                     You can also specify the search and replacement strings directly as command line args by setting the
                     --find "search_string" and --replacement "replacement_string" argument options."""
