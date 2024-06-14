@@ -21,3 +21,11 @@ repos:
     rev: v8.18.1
     hooks:
       - id: gitleaks
+
+  - repo: local
+    hooks:
+      - id: check-version
+        name: Check version
+        entry: python assets/check_version.py
+        language: system
+        files: pyproject.toml
