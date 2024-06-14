@@ -1,16 +1,3 @@
-# -*- coding: utf-8 -*-
-# import unittest
-# from find_and_replace.main import replace_in_file, main
-# class TestMainFunctions(unittest.TestCase):
-#     def test_replace_in_file(self):
-#         pass  # TODO: Write your test here
-
-#     def test_main(self):
-#         pass  # TODO: Write your test here
-
-# if __name__ == '__main__':
-#     unittest.main()
-
 import unittest
 import argparse
 from unittest.mock import patch, mock_open
