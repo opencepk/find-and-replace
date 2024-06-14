@@ -4,11 +4,9 @@ on:
     pull_request:
         branches:
             - main
-        types: [closed]
 
 jobs:
   build-n-publish:
-    if: ${{ github.event.pull_request.merged }}
     name: Build and publish Python 🐍 distributions 📦 to PyPI
     runs-on: ubuntu-latest
     permissions:
@@ -32,3 +30,6 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           skip-existing: true
+
+      # - name: Publish the package
+      #   run: twine upload --repository-url https://upload.pypi.org/legacy/ -u __token__ -p ${{ secrets.PYPI_TOKEN }} ${{ github.workspace }}/dist/*
