@@ -9,9 +9,7 @@ pre-commit install -t pre-push
 
 The above will make sure precommit will be run automatically on push
 
-
-
-## Installation
+## Installation as a pip package
 
 This is an easy to use package which is already available here https://pypi.org/project/find-and-replace-template-commit-check/:
 
@@ -22,8 +20,13 @@ You can install the package via pip:
 ```bash
 pip install find-and-replace-strings
 ```
+In case if you want to use it from the root folder in source:
 
-## Usage
+```
+ python -m find_and_replace_strings -h
+```
+
+## Usage as a pre commit hook
 
 To use this package, you need to add it to your pre-commit configuration file (.pre-commit-config.yaml). Here's an example:
 
@@ -68,7 +71,7 @@ repos:
 ```
 
 Please note you also have a choice of
-files: '.\*\.md$'
+files: '.*\.md$'
 or
 files: .
 
@@ -98,26 +101,22 @@ find-and-replace-strings --find "old_string" --replacement "new_string"  README1
 
 ```
 find-and-replace-strings -h
-usage: find-and-replace-strings [-h] [--search SEARCH] [--replacement REPLACEMENT] [--read-from-file READ_FROM_FILE]
-                        [--config REPLACEMENTS_FILE]
-                        [files ...]
+usage: find-and-replace-strings [-h] [--config CONFIG] [--find] [--replacement]
+                                [files ...]
 
-This script performs search and replace operations on one or more files. It supports two modes of operation: Direct Mode and
-File Mode. In Direct Mode, you specify the search and replacement strings directly on the command line. In File Mode, the script
-reads the search and replacement strings from a JSON file.
+Perform find and replace operations on one or more target files. By default, the script
+reads the search and replacement entries (strings) from a JSON file. You can also
+specify the search and replacement strings directly as command line args by setting the
+--find "search_string" and --replacement "replacement_string" argument options.
 
 positional arguments:
-  files                 Files to perform search and replace
+  files            File(s) on which to perform search and replace
 
 options:
-  -h, --help            show this help message and exit
-  --search SEARCH       Text to search for
-  --replacement REPLACEMENT
-                        Text to replace with
-  --read-from-file READ_FROM_FILE
-                        Read search and replacement strings from file
-  --config REPLACEMENTS_FILE
-                        Path to the replacements file
+  -h, --help       show this help message and exit
+  --config CONFIG  PATH to JSON config file containing find and replacement entries
+  --find           String to find in files
+  --replacement    String to replace with in files
 
 ```
 
