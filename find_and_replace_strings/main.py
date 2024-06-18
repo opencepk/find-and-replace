@@ -66,7 +66,7 @@ import json
 import sys
 
 
-def replace_in_file(filename, search, replacement, dry_run):
+def replace_in_file(filename, search, replacement, dry_run=False):
     with fileinput.FileInput(filename, inplace=not dry_run) as file:
         for line in file:
             if search in line and dry_run:
