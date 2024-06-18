@@ -10,7 +10,7 @@ packages = ["find_and_replace_strings"]
 
 [project]
 name = "find-and-replace-strings"
-version = "1.0.8"
+version = "1.0.9"
 description = "Python package and pre-commit-hook for finding and replacing string(s) in file(s)."
 readme = "README.md"
 license = { text = "GPLv3" }
