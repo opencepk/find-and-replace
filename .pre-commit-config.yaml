@@ -38,3 +38,12 @@ repos:
         language: system
         files: 'e2e/.*\.test$'
         verbose: true
+
+  - repo: local
+    hooks:
+      - id: unittest
+        name: Run unit tests
+        entry: python -m unittest tests.test_main
+        language: system
+        pass_filenames: false
+        always_run: true
