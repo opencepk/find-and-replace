@@ -1,0 +1,9 @@
+# Target test file for find-and-replace-strings pre-commit hook
+
+business unit is:            opencepk
+project name is:             exampleproject
+github url is:               https://github.com/opencepk/opencepk-exampleproject
+project description slug is: Example project used to demonstrate all aspects of a project development and deployment
+project team is:             opencepk/opencepk-exampleteam
+project contributors are:    * [Open CEPK](mailto:opencepk@gmail.com)
+special character tests:     "SomeValueInDoubleQuotes"

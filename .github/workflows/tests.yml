@@ -1,0 +1,74 @@
+---
+name: tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  # ----------------------
+  # JOB 1: Run unit tests
+  # ----------------------
+  tests-unit:
+    name: tests-unit
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5.1.0
+        with:
+          python-version: 3.11
+
+      - name: Run tests
+        run: python3 -m unittest tests/test_main.py
+  # ----------------------
+  # JOB 2: Run python package end to end test
+  # ----------------------
+  test-package-e2e:
+    name: test-package-e2e
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5.1.0
+        with:
+          python-version: 3.11
+
+      - name: Run test-package-e2e.sh
+        run: |
+          cd tests-package-e2e
+          ./test-package-e2e.sh
+  # ----------------------
+  # JOB 3: Run pre-commit hook test
+  # ----------------------
+  test-pre-commit-hook:
+    name: test-pre-commit-hook
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5.1.0
+        with:
+          python-version: 3.11
+
+      - name: Run test-pre-commit-hook.sh
+        run: |
+          pip install pre-commit
+          cd tests-pre-commit-hook
+          ./test-pre-commit-hook.sh
