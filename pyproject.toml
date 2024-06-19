@@ -1,8 +1,5 @@
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]
-
-
-
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
@@ -10,17 +7,14 @@ packages = ["find_and_replace_strings"]
 
 [project]
 name = "find-and-replace-strings"
-version = "1.0.9"
+version = "1.1.0"
 description = "Python package and pre-commit-hook for finding and replacing string(s) in file(s)."
 readme = "README.md"
 license = { text = "GPLv3" }
 authors = [{name = "OpenCEPK Open Cloud Engineering Platform Kit", email = "opencepk@gmail.com"}]
-dependencies = [
-    'tomli; python_version < "3.11"',
-]
 requires-python = ">=3.9"
 
-
+keywords = ["find", "replace", "string", "file", "pre-commit", "hook", "git", "tool", "utility", "opencepk"]
 classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
@@ -44,9 +38,6 @@ classifiers = [
     "Topic :: Text Processing :: General",
     "Topic :: Utilities"
 ]
-
-keywords = ["find", "replace", "string", "file", "pre-commit", "hook", "git", "tool", "utility", "opencepk"]
-
 
 [project.scripts]
 find-and-replace-strings = "find_and_replace_strings.__main__:main"

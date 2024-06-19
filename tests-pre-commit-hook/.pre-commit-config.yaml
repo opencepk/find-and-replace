@@ -1,0 +1,14 @@
+---
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  - repo: local
+    hooks:
+      - id: find-and-replace-strings
+        name: find-and-replace-strings
+        entry: "./find_and_replace_strings/main.py"
+        language: python
+        exclude_types:
+          - binary
+        args: ["--config", "./tests-pre-commit-hook/.find-and-replace.json"]
+        files: "tests-pre-commit-hook/README_TEST_PRE_COMMIT.md"

@@ -4,6 +4,7 @@ import argparse
 from unittest.mock import patch, mock_open
 from find_and_replace_strings.main import replace_in_file, main
 
+
 class TestMainFunctions(unittest.TestCase):
     @patch('fileinput.FileInput')
     def test_replace_in_file(self, mock_fileinput):
@@ -16,6 +17,7 @@ class TestMainFunctions(unittest.TestCase):
         replace_in_file('dummy.txt', 'hello', 'hi')
         # Assert that the file was opened correctly
         mock_fileinput.assert_called_once_with('dummy.txt', inplace=True)
+
 
 @patch('argparse.ArgumentParser.parse_args')
 @patch('find_and_replace.main.replace_in_file')
@@ -33,6 +35,7 @@ def test_main(self, mock_json_load, mock_open, mock_getcwd, mock_replace_in_file
     # Assert that the config file was opened correctly and the replace_in_file function was called with the correct arguments
     mock_open.assert_called_once_with('/dummy/path/.find-and-replace.json', 'r')
     mock_replace_in_file.assert_called_once_with('dummy.txt', 'hello', 'hi')
+
 
 if __name__ == '__main__':
     unittest.main()

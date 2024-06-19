@@ -1,0 +1,5 @@
+# Requirements for pypi_bumpversion_check
+toml
+requests
+#toml==0.10.2
+#requests==2.26.0

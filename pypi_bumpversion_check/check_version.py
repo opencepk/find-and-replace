@@ -4,6 +4,7 @@ import sys
 import requests
 import subprocess
 
+
 def main():
     # Load the pyproject.toml file
     data = toml.load(open("pyproject.toml"))
@@ -24,6 +25,7 @@ def main():
     if "pyproject.toml" in modified_files:
         print("The version in pyproject.toml has been changed but not committed. Please commit your changes.")
         sys.exit(1)
+
 
 if __name__ == "__main__":
     main()
