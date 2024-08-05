@@ -14,7 +14,7 @@ The above will make sure precommit will be run automatically on push
 This is an easy to use package which is already available here https://pypi.org/project/find-and-replace-template-commit-check/:
 
 ![package to use](./assets/pypi-package.png "Title")
-
+xxxxxxxxx
 You can install the package via pip:
 
 ```bash
