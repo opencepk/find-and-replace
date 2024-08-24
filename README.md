@@ -9,6 +9,8 @@ pre-commit install -t pre-push
 
 The above will make sure precommit will be run automatically on push
 
+
+
 ## Installation as a pip package
 
 This is an easy to use package which is already available here https://pypi.org/project/find-and-replace-template-commit-check/:
